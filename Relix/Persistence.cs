@@ -8,6 +8,7 @@ namespace WindowsFormsApplication4
     // Persistence class as per good coding practise
     public static class Persistence
     {
+        // Stuff
         /// <summary>
         /// Load our equipment list using serialization
         /// </summary>
