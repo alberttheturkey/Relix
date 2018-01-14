@@ -118,5 +118,20 @@ namespace WindowsFormsApplication4
             }
             lbAbilityList.Items.Add(cbAbilityAdd.Text);
         }
+
+        private void rbJob_CheckedChanged(object sender, EventArgs e)
+        {
+            editEquippable.type = Equippable.EquipmentType.Job;
+        }
+
+        private void rbVG_CheckedChanged(object sender, EventArgs e)
+        {
+            editEquippable.type = Equippable.EquipmentType.VideoGames;
+        }
+
+        private void rbLearning_CheckedChanged(object sender, EventArgs e)
+        {
+            editEquippable.type = Equippable.EquipmentType.Learning;
+        }
     }
 }

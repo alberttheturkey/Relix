@@ -75,9 +75,18 @@ namespace WindowsFormsApplication4
         private void updateLists()
         {
             lbJobList.Items.Clear();
+            cbJob.Items.Clear();
+            cbLearn.Items.Clear();
+            cbVG.Items.Clear();
             foreach(Equippable job in availableEquipment.jobs)
             {
                 lbJobList.Items.Add(job.name);
+                if(job.type == Equippable.EquipmentType.Job)
+                    cbJob.Items.Add(job.name);
+                if (job.type == Equippable.EquipmentType.Learning)
+                    cbLearn.Items.Add(job.name);
+                if (job.type == Equippable.EquipmentType.VideoGames)
+                    cbVG.Items.Add(job.name);
             }
             lbAbility.Items.Clear();
             foreach (Ability ability in availableEquipment.abilities)
@@ -132,6 +141,8 @@ namespace WindowsFormsApplication4
                 {
                 player = new PlayerStats();
                     MessageBox.Show("Sorry, couldn't load that file.");
+                    player = new PlayerStats();
+                    
                     lblDebug.Text = ex.Message;
                 }
         }
