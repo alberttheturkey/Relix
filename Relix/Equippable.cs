@@ -9,6 +9,7 @@ namespace WindowsFormsApplication4
     [Serializable]
     public class Equippable
     {
+        // More sStuff
         // Equipment details
         public string name = "MissingName";
         public enum EquipmentType
