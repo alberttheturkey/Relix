@@ -33,5 +33,15 @@ namespace WindowsFormsApplication4
         {
             abilityToEdit.name = tbAbilityName.Text;
         }
+
+        private void spSupport_ValueChanged(object sender, EventArgs e)
+        {
+            abilityToEdit.supportsModifier = (int)spSupport.Value;
+        }
+
+        private void spProjects_ValueChanged(object sender, EventArgs e)
+        {
+            abilityToEdit.sideProjectModifier = (int)spProjects.Value;
+        }
     }
 }

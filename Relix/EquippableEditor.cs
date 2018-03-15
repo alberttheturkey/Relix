@@ -133,5 +133,15 @@ namespace WindowsFormsApplication4
         {
             editEquippable.type = Equippable.EquipmentType.Learning;
         }
+
+        private void rbProject_CheckedChanged(object sender, EventArgs e)
+        {
+            editEquippable.type = Equippable.EquipmentType.SideProject;
+        }
+
+        private void rbSupport_CheckedChanged(object sender, EventArgs e)
+        {
+            editEquippable.type = Equippable.EquipmentType.Support;
+        }
     }
 }

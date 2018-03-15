@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication4
@@ -7,6 +8,10 @@ namespace WindowsFormsApplication4
     {
         PlayerStats player = new PlayerStats();
         public static EquipmentList availableEquipment = new EquipmentList();
+        ComboBox[] cbList;
+
+        int supportListSize = 2;
+        int abilityListSpacing = 20;
 
         public MainWindow()
         {
@@ -59,7 +64,7 @@ namespace WindowsFormsApplication4
 
         private void btnAddJob_Click(object sender, EventArgs e)
         {
-            Equippable toAdd = new Equippable("job" + availableEquipment.jobs.Count);
+            Equippable toAdd = new Equippable("job" + availableEquipment.equippables.Count);
             toAdd.type = Equippable.EquipmentType.Job;
 
             EquippableEditor equippableEditor = new EquippableEditor(toAdd);
@@ -67,32 +72,65 @@ namespace WindowsFormsApplication4
 
             if(equippableEditor.DialogResult == DialogResult.OK)
             {
-                availableEquipment.jobs.Add(equippableEditor.editEquippable);
+                availableEquipment.equippables.Add(equippableEditor.editEquippable);
                 updateLists();
             }
         }
 
         private void updateLists()
         {
+            // Clear our lists before we update them
+            // TODO: Make these retain if they have items selected
             lbJobList.Items.Clear();
             cbJob.Items.Clear();
             cbLearn.Items.Clear();
             cbVG.Items.Clear();
-            foreach(Equippable job in availableEquipment.jobs)
+
+            // These select boxes can be duplicated, so we create them here first
+            // then we duplicate them later
+            ComboBox cbProject = new ComboBox();
+
+            // Add our different equippables to their respective combo boxes
+            // This is where the equippables list is getting populated
+            foreach(Equippable eqp in availableEquipment.equippables)
             {
-                lbJobList.Items.Add(job.name);
-                if(job.type == Equippable.EquipmentType.Job)
-                    cbJob.Items.Add(job.name);
-                if (job.type == Equippable.EquipmentType.Learning)
-                    cbLearn.Items.Add(job.name);
-                if (job.type == Equippable.EquipmentType.VideoGames)
-                    cbVG.Items.Add(job.name);
+                lbJobList.Items.Add(eqp.name);
+                if(eqp.type == Equippable.EquipmentType.Job)
+                    cbJob.Items.Add(eqp.name);
+                if (eqp.type == Equippable.EquipmentType.Learning)
+                    cbLearn.Items.Add(eqp.name);
+                if (eqp.type == Equippable.EquipmentType.VideoGames)
+                    cbVG.Items.Add(eqp.name);
+                if (eqp.type == Equippable.EquipmentType.SideProject)
+                    cbProject.Items.Add(eqp.name);
             }
+
+            //  Adding all the abilities to the ability list box
             lbAbility.Items.Clear();
             foreach (Ability ability in availableEquipment.abilities)
             {
                 lbAbility.Items.Add(ability.name);
             }
+            flpSupport.Controls.Clear();
+                cbList = new ComboBox[player.SupportCount];
+            for (int i = 0; i < player.SupportCount; i++)
+            {
+                ComboBox cbSupport = new ComboBox();
+
+                // This is too clunky for my liking. Maybe I should extract to seperate lists...
+                foreach (Equippable eqp in availableEquipment.equippables)
+                {
+                    if (eqp.type == Equippable.EquipmentType.Support)
+                        cbSupport.Items.Add(eqp.name);
+                }
+
+                cbList[i] = cbSupport;
+                List<Ability> stuff = player.Abilities;
+                cbList[i].Name = "cbSupport" + i;
+                cbList[i].Tag = i;
+                flpSupport.Controls.Add(cbList[i]);
+            }
+
         }
 
         private void lbJobList_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,12 +143,12 @@ namespace WindowsFormsApplication4
             // Open up our dialog for editing equippables using the index from the job list
             if (lbJobList.SelectedIndex > -1)
             {
-                EquippableEditor equippableEditor = new EquippableEditor(availableEquipment.jobs[lbJobList.SelectedIndex]);
+                EquippableEditor equippableEditor = new EquippableEditor(availableEquipment.equippables[lbJobList.SelectedIndex]);
                 equippableEditor.ShowDialog();
 
                 if (equippableEditor.DialogResult == DialogResult.OK)
                 {
-                    availableEquipment.jobs[lbJobList.SelectedIndex] = equippableEditor.editEquippable;
+                    availableEquipment.equippables[lbJobList.SelectedIndex] = equippableEditor.editEquippable;
                     updateLists();
                 }
             }
@@ -150,6 +188,14 @@ namespace WindowsFormsApplication4
         public void updatePlayer()
         {
 
+        }
+
+        private void cbJob_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (Equippable job in availableEquipment.equippables)
+                if (job.type == Equippable.EquipmentType.Job)
+                    if (job.name == cbJob.GetItemText(cbJob.SelectedItem))
+                        player.job = job;
         }
     }
 }

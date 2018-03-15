@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.spStress = new System.Windows.Forms.NumericUpDown();
-            this.spDreams = new System.Windows.Forms.NumericUpDown();
+            this.spProjects = new System.Windows.Forms.NumericUpDown();
+            this.spSupport = new System.Windows.Forms.NumericUpDown();
             this.lblMultiplayer = new System.Windows.Forms.Label();
             this.lblApplying = new System.Windows.Forms.Label();
             this.lblTVShows = new System.Windows.Forms.Label();
@@ -55,43 +55,45 @@
             this.lblSinglePlayer = new System.Windows.Forms.Label();
             this.lblParties = new System.Windows.Forms.Label();
             this.lblGym = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblESupport = new System.Windows.Forms.Label();
+            this.lblEProjects = new System.Windows.Forms.Label();
             this.lblLate = new System.Windows.Forms.Label();
             this.cbLate = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.spStress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spDreams)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spProjects)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spSupport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spExperience)).BeginInit();
             this.SuspendLayout();
             // 
-            // spStress
+            // spProjects
             // 
-            this.spStress.Location = new System.Drawing.Point(120, 439);
-            this.spStress.Minimum = new decimal(new int[] {
+            this.spProjects.Location = new System.Drawing.Point(120, 439);
+            this.spProjects.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
-            this.spStress.Name = "spStress";
-            this.spStress.Size = new System.Drawing.Size(120, 26);
-            this.spStress.TabIndex = 22;
+            this.spProjects.Name = "spProjects";
+            this.spProjects.Size = new System.Drawing.Size(120, 26);
+            this.spProjects.TabIndex = 22;
+            this.spProjects.ValueChanged += new System.EventHandler(this.spProjects_ValueChanged);
             // 
-            // spDreams
+            // spSupport
             // 
-            this.spDreams.Location = new System.Drawing.Point(120, 407);
-            this.spDreams.Maximum = new decimal(new int[] {
+            this.spSupport.Location = new System.Drawing.Point(120, 407);
+            this.spSupport.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.spDreams.Minimum = new decimal(new int[] {
+            this.spSupport.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
-            this.spDreams.Name = "spDreams";
-            this.spDreams.Size = new System.Drawing.Size(120, 26);
-            this.spDreams.TabIndex = 23;
+            this.spSupport.Name = "spSupport";
+            this.spSupport.Size = new System.Drawing.Size(120, 26);
+            this.spSupport.TabIndex = 23;
+            this.spSupport.ValueChanged += new System.EventHandler(this.spSupport_ValueChanged);
             // 
             // lblMultiplayer
             // 
@@ -313,23 +315,23 @@
             this.lblGym.TabIndex = 16;
             this.lblGym.Text = "Able to attend the Gym";
             // 
-            // label5
+            // lblESupport
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 407);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 20);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Saving";
+            this.lblESupport.AutoSize = true;
+            this.lblESupport.Location = new System.Drawing.Point(13, 407);
+            this.lblESupport.Name = "lblESupport";
+            this.lblESupport.Size = new System.Drawing.Size(107, 20);
+            this.lblESupport.TabIndex = 18;
+            this.lblESupport.Text = "Extra Support";
             // 
-            // label6
+            // lblEProjects
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 439);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 20);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Time";
+            this.lblEProjects.AutoSize = true;
+            this.lblEProjects.Location = new System.Drawing.Point(13, 439);
+            this.lblEProjects.Name = "lblEProjects";
+            this.lblEProjects.Size = new System.Drawing.Size(107, 20);
+            this.lblEProjects.TabIndex = 20;
+            this.lblEProjects.Text = "Extra Projects";
             // 
             // lblLate
             // 
@@ -363,10 +365,10 @@
             this.Controls.Add(this.cbTVShows);
             this.Controls.Add(this.cbMovies);
             this.Controls.Add(this.cbBooks);
-            this.Controls.Add(this.spStress);
-            this.Controls.Add(this.spDreams);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.spProjects);
+            this.Controls.Add(this.spSupport);
+            this.Controls.Add(this.lblEProjects);
+            this.Controls.Add(this.lblESupport);
             this.Controls.Add(this.lblLate);
             this.Controls.Add(this.lblMultiplayer);
             this.Controls.Add(this.lblGym);
@@ -386,8 +388,8 @@
             this.Controls.Add(this.btnSaveJob);
             this.Name = "AbilityEditor";
             this.Text = "AbilityEditor";
-            ((System.ComponentModel.ISupportInitialize)(this.spStress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spDreams)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spProjects)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spSupport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spExperience)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -395,8 +397,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.NumericUpDown spStress;
-        private System.Windows.Forms.NumericUpDown spDreams;
+        private System.Windows.Forms.NumericUpDown spProjects;
+        private System.Windows.Forms.NumericUpDown spSupport;
         private System.Windows.Forms.Label lblMultiplayer;
         private System.Windows.Forms.Label lblApplying;
         private System.Windows.Forms.Label lblTVShows;
@@ -422,8 +424,8 @@
         private System.Windows.Forms.Label lblSinglePlayer;
         private System.Windows.Forms.Label lblParties;
         private System.Windows.Forms.Label lblGym;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblESupport;
+        private System.Windows.Forms.Label lblEProjects;
         private System.Windows.Forms.Label lblLate;
         private System.Windows.Forms.CheckBox cbLate;
     }

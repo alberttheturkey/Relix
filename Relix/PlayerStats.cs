@@ -21,27 +21,27 @@ namespace WindowsFormsApplication4
         public int time = 0;
         public int dreams = 0;
 
-        public Equippable job = new Equippable("NoJob");
+        public Equippable job = new Equippable("noJob");
         public Equippable videoGame = new Equippable("noVG");
         public Equippable learning = new Equippable("noLearn");
 
-        public List<Equippable> sideProjects;
+        public List<Equippable> sideProjects = new List<Equippable>();
         public int sideProjectCount = 2;
 
         public List<Equippable> supports = new List<Equippable>();
         private int supportCount = 2;
 
-        private List<Ability> abilities;
+        private List<Ability> abilities = new List<Ability>();
 
         public int SupportCount {
             get
             {
                 int result = supportCount;
 
-                foreach (Ability a in abilities)
-                    result += a.sideProjectModifier;
+                foreach (Ability a in Abilities)
+                    result += a.supportsModifier;
 
-                return supportCount; }
+                return result; }
             set { supportCount = value; }
         }
 
@@ -54,7 +54,6 @@ namespace WindowsFormsApplication4
                 result.AddRange(job.abilities);
                 result.AddRange(videoGame.abilities);
                 result.AddRange(learning.abilities);
-                result.AddRange(job.abilities);
 
                 foreach (Equippable e in sideProjects)
                     if (sideProjects.IndexOf(e) < sideProjectCount)
